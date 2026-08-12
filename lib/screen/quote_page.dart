@@ -25,7 +25,7 @@ class QuotePage extends ConsumerWidget {
           loading: () {
             return const CircularProgressIndicator();
           },
-          error: (error, StackTrace) {
+          error: (error, stackTrace) {
             return Text('Error: $error');
           },
           data: (quote) {
