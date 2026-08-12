@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:providers/driving_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:providers/screen/like_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -10,6 +11,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: DrivingPage());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: LikePage());
   }
 }

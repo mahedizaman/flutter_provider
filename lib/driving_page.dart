@@ -50,7 +50,7 @@ class DrivingPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: TextField(
-                        keyboardType: ,
+                        keyboardType: TextInputType.number,
                         controller: ageController,
                         decoration: InputDecoration(
                           hintText: 'Enter your age',
