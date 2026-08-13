@@ -34,6 +34,17 @@ class NotesNotifier extends AsyncNotifier<List<Note>> {
     final currentNotes = state.value ?? [];
     state = AsyncData(currentNotes.where((note) => note.id != id).toList());
   }
+
+  Future<void> editNotes(String id, String newTitle) async {
+    final currentNotes = state.value ?? [];
+    final updatedNotes = currentNotes.map((note) {
+      if (note.id == id) {
+        return Note(id: note.id, title: newTitle);
+      }
+      return note;
+    }).toList();
+    state = AsyncData(updatedNotes);
+  }
 }
 
 final notesProvider = AsyncNotifierProvider<NotesNotifier, List<Note>>(

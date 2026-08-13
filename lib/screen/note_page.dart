@@ -33,8 +33,7 @@ class NotePage extends ConsumerWidget {
                           onPressed: () {
                             ref
                                 .read(notesProvider.notifier)
-                                .addNotes(textController.text)
-                              ;
+                                .addNotes(textController.text);
                           },
                           icon: Icon(Icons.check),
                         ),
@@ -48,7 +47,34 @@ class NotePage extends ConsumerWidget {
                   itemCount: notes.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      title: Text(notes[index].title),
+                      title: TextButton(
+                        onPressed: () {
+                          final controller = TextEditingController(
+                            text: notes[index].title,
+                          );
+
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('Edit Note'),
+                                content: TextField(
+                                  controller: controller,
+                                  autofocus: true,
+                                  onSubmitted: (newTitle) {
+                                    ref
+                                        .read(notesProvider.notifier)
+                                        .editNotes(notes[index].id, newTitle);
+
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: Text(notes[index].title),
+                      ),
                       leading: IconButton(
                         onPressed: () {
                           ref
